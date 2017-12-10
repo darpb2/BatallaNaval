@@ -1,0 +1,18 @@
+﻿@model Codifico.Senior.Web.Models.Player
+
+@{
+    ViewBag.Title = "Inico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inicio:</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        <label>Nombre del Jugador:</label>
+        @Html.TextBoxFor(x => x.Name)
+        <br />   
+        @Html.Partial("Game", new Codifico.Senior.Web.Models.Game { Player1 = Model, Player2 = new Codifico.Senior.Core.Class.Player() })
+        <input type="submit" id="juega" name="juega" value="Registrar" />
+    </div>
+}

@@ -1,0 +1,97 @@
+﻿@model Codifico.Senior.Web.Models.Player
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    div {
+        border: 1px solid;
+    }
+
+    .divtable {
+        display: table;
+    }
+
+    .divrow {
+        display: table-row;
+    }
+
+    .divcol {
+        display: table-cell;
+        width: 100px;
+    }
+
+    .headrow {
+        display: table-caption;
+    }
+
+    .content {
+        display: table-cell;
+        width: 70px;
+        height: auto;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    <h2>@Model.Name</h2>
+    <br>
+    <div style="width:70%;height:70%;background-image:url('../../Images/el-mar-672xXx80.jpg');text-align:center;margin:auto">
+        <div class="divtable" style="margin:auto">
+            <div class="headrow">
+                <div class="divcol"><label style="font-size:50px;width:70px"> </label></div>
+                <div class="divcol"><label style="font-size:50px;width:70px">A</label></div>
+                <div class="divcol"><label style="font-size:50px;width:70px">B</label></div>
+                <div class="divcol"><label style="font-size:50px;width:70px">C</label></div>
+                <div class="divcol"><label style="font-size:50px;width:70px">D</label></div>
+                <div class="divcol"><label style="font-size:50px;width:70px">E</label></div>
+                <div class="divcol"><label style="font-size:50px;width:70px">J</label></div>
+                <div class="divcol"><label style="font-size:50px;width:70px">G</label></div>
+                <div class="divcol"><label style="font-size:50px;width:70px">H</label></div>
+            </div>
+            @for (int x = 0; x < 8; x++)
+            {
+                int pos = x + 1;
+                string ubi = string.Empty;
+                <div class="divrow">
+                    <div class="content"><label style="font-size:50px;">@pos</label></div>
+                    @for (int y = 0; y < 8; y++)
+                    {
+                        ubi = string.Format("{0}-{1}-{2}", Model.Host, x, y);
+                        if (Model.BattleTable[x, y] == 2)
+                        {
+                            <div class="content" id=@ubi><img class="" src="~/Images/explox.jpg" style="width:100%;height:auto" /></div>
+                        }
+                        else
+                        {
+                            //if (Model.BattleTable[x, y] == 3)
+                            //{
+                            <div class="content">
+                                <img class="imagen" id=@ubi src="~/Images/ghost.png" style="width:100%;height:auto" />
+                            </div>
+                            //}
+                        }
+                    }
+                </div>
+            }
+        </div>
+    </div>
+}
+@section scripts {
+    <script>
+        $('.imagen').click(function () {
+            var detailsURL = '/Game/Jugar';
+            var request = { id:this.id };
+
+            $.ajax({
+                url: detailsURL,
+                contentType: "applicaton/json",
+                type: "POST",
+                data: request,
+                dataType: "json"
+            });
+        });
+    </script>
+}

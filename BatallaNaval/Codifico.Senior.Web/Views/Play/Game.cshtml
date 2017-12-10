@@ -1,0 +1,15 @@
+﻿@model Codifico.Senior.Web.Models.Game
+@{
+    ViewBag.Title = "Game";
+}
+@if (ViewBag.Usuarios != null)
+{
+    if (ViewBag.Usuarios.Count > 0)
+    {
+        <h2>Selecione el Segundo Jugador:</h2>
+        <label>Nombre del Jugador:</label>
+        @Html.DropDownList("lstUsuarios", new SelectList(ViewBag.Usuarios));
+        <br />
+    }
+}
+

@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron" style="text-align:center">
+    <h1>Welcome to Battleship</h1>
+</div>
+
+<div class="row" style="text-align:center" >
+    <div class="col-md-4">
+        <h2 style="color:white">Iniciar Partida</h2>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Play")">Iniciar &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2 style="color:white">Ver Partidas Iniciadas</h2>
+        <p><a class="btn btn-default" href="@Url.Action("About", "Home")">Ver &raquo;</a></p>
+    </div>
+</div>
